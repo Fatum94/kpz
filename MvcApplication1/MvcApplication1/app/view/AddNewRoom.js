@@ -20,14 +20,23 @@
                 xtype: 'button',
                 text: 'Зареєструвати',
                 handler: function () {
+                    var button = this;
                     this.up('form').getForm().submit({
                         url: 'api/values',
-                        method: 'POST'
+                        method: 'POST',
+                        success: function () {
+                            button.up('window').close();
+                            Ext.data.StoreManager.lookup('Users').load();
+                        },
+                        failure: function () {
+                            button.up('window').close();
+                            Ext.data.StoreManager.lookup('Users').load();
+                        }
                     });
                 }
             }
         ]
     }
-       
+
     ]
 });

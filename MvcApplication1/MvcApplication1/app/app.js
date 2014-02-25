@@ -2,6 +2,6 @@
     name: 'TestApp',
     autoCreateViewport: true,
     models: ['User'],
-    stores: ['Users'],
+    stores: ['Users', 'Clients'],
     controllers: ['Users']
 });

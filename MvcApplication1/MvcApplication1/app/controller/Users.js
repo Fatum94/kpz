@@ -6,7 +6,8 @@
         this.control({
             'mainview': {
                 'getFreePlaces': this.getFreePlaces,
-                'addNewRoom': this.addNewRoom
+                'addNewRoom': this.addNewRoom,
+                'showClients': this.showClients
             },
             'numbers > grid': {
                 itemclick: this.onEmptyNumberClick
@@ -28,6 +29,9 @@
     },
     addNewRoom: function() {
         Ext.create('TestApp.view.AddNewRoom', {});
+    },
+    showClients: function () {
+        Ext.create('TestApp.view.ClientsView', {});
     },
     onEmptyNumberClick: function(grid, record) {
         Ext.create('TestApp.view.TakeANumber', {

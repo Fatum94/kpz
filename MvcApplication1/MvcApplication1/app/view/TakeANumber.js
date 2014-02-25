@@ -30,6 +30,7 @@
                         },
                         failure: function() {
                             butt.up('window').close();
+                            Ext.data.StoreManager.lookup('Users').load();
                         }
                     });
                 }

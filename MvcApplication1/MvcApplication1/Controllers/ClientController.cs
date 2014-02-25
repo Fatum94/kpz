@@ -1,25 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity.Migrations;
-using System.Globalization;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Web.Http;
+using System.Web;
 using System.Web.Mvc;
-using MvcApplication1.App_Start;
+using System.Web.Http;
 using MvcApplication1.Models;
-using Newtonsoft.Json;
+using MvcApplication1.App_Start;
 
 namespace MvcApplication1.Controllers
 {
-    public class ValuesController : ApiController
+    public class ClientController : ApiController
     {
-        // GET api/values
-        public IEnumerable<Room> Get()
+        // GET api/clients
+        public IEnumerable<Client> Get()
         {
             var database = new Db();
-            return new Db().Rooms.Where(r=>r.IsFree == true).ToList();
+            return database.Clients.ToList();
         }
 
         // GET api/values/5
@@ -53,7 +49,7 @@ namespace MvcApplication1.Controllers
             r.BusyTime = room.BusyTime;
             r.ClientName = room.ClientName;
             r.IsFree = false;
-            database.Clients.Add(new Client { ClientName = room.ClientName, RoomId = id });
+            database.Clients.Add(new Client { ClientName = room.ClientName, RoomId = room.Id });
             database.SaveChanges();
             return "{'success': true}";
         }

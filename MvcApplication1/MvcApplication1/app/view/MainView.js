@@ -19,7 +19,7 @@
             xtype: 'button',
             text: 'Show Free Rooms',
             handler: function () {
-                this.up('mainview').fireEvent('freeRooms');
+                this.up('mainview').fireEvent('showClients');
             }
         }
     ],

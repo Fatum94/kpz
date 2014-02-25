@@ -120,12 +120,16 @@
   <ItemGroup>
     <Content Include="app\view\AddNewRoom.js" />
     <Content Include="app\view\TakeANumber.js" />
+    <Content Include="app\view\ClientsView.js" />
+    <Content Include="app\store\Clients.js" />
+    <Content Include="app\model\Client.js" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\Db.cs" />
     <Compile Include="App_Start\DbInitializator.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\ClientController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
@@ -136,6 +140,7 @@
       <DependentUpon>201402151818323_init.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Client.cs" />
     <Compile Include="Models\Room.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -256,6 +261,9 @@
     <EmbeddedResource Include="Migrations\201402151818323_init.resx">
       <DependentUpon>201402151818323_init.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
