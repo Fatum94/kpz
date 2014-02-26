@@ -2,22 +2,28 @@
     extend: 'Ext.panel.Panel',
     alias: 'widget.mainview',
     title: 'Hotel',
+    width: 400,
+    height: 200,
+    style: 'margin: 0 auto;',
     items: [
         {
             xtype: 'button',
             text: 'Вільні місця',
+            margin: '15',
             handler: function() {
                 this.up('mainview').fireEvent('getFreePlaces');
             }
         }, {
             xtype: 'button',
-            text: 'Add New Room',
+            text: 'Додати нову кімнату',
+            margin: '15',
             handler: function() {
                 this.up('mainview').fireEvent('addNewRoom');
             }
         }, {
             xtype: 'button',
-            text: 'Show Free Rooms',
+            text: 'Поточні клієнти',
+            margin: '15',
             handler: function () {
                 this.up('mainview').fireEvent('showClients');
             }

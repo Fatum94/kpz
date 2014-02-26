@@ -3,7 +3,6 @@
     alias: 'widget.clientsview',
     title: 'Клієнти',
     modal: true,
-    height: 600,
     width: 800,
     layout: 'fit',
     autoShow: true,
@@ -12,7 +11,13 @@
         store: 'Clients',
         columns: [
                 { header: 'ПІП', dataIndex: 'ClientName', flex: 1 },
-                { header: 'Номер кімнати', dataIndex: 'RoomId', flex: 1 }
+                { header: 'Номер кімнати', dataIndex: 'Room.Id', flex: 1 },
+                { header: 'Поверх', dataIndex: 'Room.Floor', flex: 1 },
+                { header: 'В номері до', dataIndex: 'Room.BusyTime', flex: 1 }
             ]
-    }]
+    }],
+    initComponent: function () {
+        Ext.data.StoreManager.lookup('Clients').load();
+        this.callParent();
+    }
 });

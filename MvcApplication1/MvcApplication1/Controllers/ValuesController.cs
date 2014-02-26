@@ -19,7 +19,7 @@ namespace MvcApplication1.Controllers
         public IEnumerable<Room> Get()
         {
             var database = new Db();
-            return new Db().Rooms.Where(r=>r.IsFree == true).ToList();
+            return new Db().Rooms.ToList();
         }
 
         // GET api/values/5
@@ -53,7 +53,7 @@ namespace MvcApplication1.Controllers
             r.BusyTime = room.BusyTime;
             r.ClientName = room.ClientName;
             r.IsFree = false;
-            database.Clients.Add(new Client { ClientName = room.ClientName, RoomId = id });
+            database.Clients.Add(new Client { ClientName = room.ClientName, Room = r});
             database.SaveChanges();
             return "{'success': true}";
         }

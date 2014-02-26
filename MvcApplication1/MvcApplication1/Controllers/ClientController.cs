@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using System.Web.Http;
 using MvcApplication1.Models;
 using MvcApplication1.App_Start;
+using System.Data.Entity;
 
 namespace MvcApplication1.Controllers
 {
@@ -15,7 +16,7 @@ namespace MvcApplication1.Controllers
         public IEnumerable<Client> Get()
         {
             var database = new Db();
-            return database.Clients.ToList();
+            return database.Clients.Include(c=>c.Room).ToList();
         }
 
         // GET api/values/5
@@ -41,21 +42,33 @@ namespace MvcApplication1.Controllers
             return "{success: true}";
         }
 
-        // PUT api/values/5
-        public string Put(int id, Room room)
+        // PUT api/client/5
+        public string Put(int id, Client client)
         {
             var database = new Db();
             Room r = database.Rooms.First(i => i.Id == id);
-            r.BusyTime = room.BusyTime;
-            r.ClientName = room.ClientName;
-            r.IsFree = false;
-            database.Clients.Add(new Client { ClientName = room.ClientName, RoomId = room.Id });
+            if (client.Room.BusyTime != null)
+            {
+                r.BusyTime = client.Room.BusyTime;
+            }
+            if (client.Room.Floor != 0) {
+                r.Floor = client.Room.Floor;
+            } 
             database.SaveChanges();
             return "{'success': true}";
         }
-        // DELETE api/values/5
-        public void Delete(int id)
+        // DELETE api/client/5
+        public string Delete(int id)
         {
+            var database = new Db();
+            Client client = database.Clients.First(c=>c.Id == id);
+            Room room = database.Rooms.FirstOrDefault(r => r.ClientName == client.ClientName);
+            room.ClientName = "";
+            room.IsFree = true;
+            room.BusyTime = null;
+            database.Clients.Remove(client);
+            database.SaveChanges();
+            return "ddd";
         }
     }
 }

@@ -10,7 +10,6 @@ namespace MvcApplication1.Models
     {
         public int Id { get; set; }
         public string ClientName { get; set; }
-        public int RoomId { get; set; }
-
+        public virtual Room Room { get; set; }
     }
 }

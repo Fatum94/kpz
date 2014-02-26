@@ -7,13 +7,16 @@
     items: [
     {
         xtype: 'form',
+        bodyStyle: 'padding: 10px;',
         items: [
             {
                 xtype: 'textfield',
+                allowBlank: false,
                 fieldLabel: 'Кількість місць',
                 name: 'CountOfPlaces'
             }, {
                 xtype: 'textfield',
+                allowBlank: false,
                 fieldLabel: 'Поверх',
                 name: 'Floor'
             }, {
@@ -21,18 +24,20 @@
                 text: 'Зареєструвати',
                 handler: function () {
                     var button = this;
-                    this.up('form').getForm().submit({
-                        url: 'api/values',
-                        method: 'POST',
-                        success: function () {
-                            button.up('window').close();
-                            Ext.data.StoreManager.lookup('Users').load();
-                        },
-                        failure: function () {
-                            button.up('window').close();
-                            Ext.data.StoreManager.lookup('Users').load();
-                        }
-                    });
+                    if (this.up('form').isValid()) {
+                        this.up('form').getForm().submit({
+                            url: 'api/values',
+                            method: 'POST',
+                            success: function () {
+                                button.up('window').close();
+                                Ext.data.StoreManager.lookup('Users').load();
+                            },
+                            failure: function () {
+                                button.up('window').close();
+                                Ext.data.StoreManager.lookup('Users').load();
+                            }
+                        });
+                    }
                 }
             }
         ]

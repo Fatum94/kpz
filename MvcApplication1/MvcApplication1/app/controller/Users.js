@@ -11,6 +11,9 @@
             },
             'numbers > grid': {
                 itemclick: this.onEmptyNumberClick
+            },
+            'clientsview > grid': {
+                itemclick: this.onClientClick
             }
 
         });
@@ -27,15 +30,22 @@
             Ext.create('TestApp.view.Numbers');
         }
     },
-    addNewRoom: function() {
+    addNewRoom: function () {
         Ext.create('TestApp.view.AddNewRoom', {});
     },
     showClients: function () {
         Ext.create('TestApp.view.ClientsView', {});
     },
-    onEmptyNumberClick: function(grid, record) {
+    onEmptyNumberClick: function (grid, record) {
         Ext.create('TestApp.view.TakeANumber', {
-            record: record
+            record: record,
+            parentView: grid.up('numbers')
+        });
+    },
+    onClientClick: function (grid, record) {
+        Ext.create('TestApp.view.EditClientInfoView', {
+            record: record,
+            parentView: grid.up('clientview')
         });
     }
 });

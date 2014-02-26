@@ -14,11 +14,13 @@ namespace MvcApplication1.App_Start
 
         public Db()
         {
-            
+            this.Configuration.LazyLoadingEnabled = true;
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Client>().HasOptional<Room>(r=>r.Room);
+
             base.OnModelCreating(modelBuilder);
         }
     }
